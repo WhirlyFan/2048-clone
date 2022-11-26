@@ -2,7 +2,6 @@ from utilities import generate_piece, print_board
 
 DEV_MODE = False
 
-
 def main(game_board: [[int, ], ]) -> [[int, ], ]:
     """
     2048 main function, runs a game of 2048 in the console.
@@ -52,7 +51,7 @@ def main(game_board: [[int, ], ]) -> [[int, ], ]:
         else:
             print_board(game_board)
         # TODO: Show updated board using the print_board function
-        
+
         # TODO: Take user's turn
         # Take input until the user's move is a valid key
         # if the user quits the game, print Goodbye and stop the Game Loop
@@ -60,7 +59,6 @@ def main(game_board: [[int, ], ]) -> [[int, ], ]:
 
         # Check if the user wins
     return game_board
-
 
 def move(game_board, user_input):
     if user_input == 'a':
@@ -96,7 +94,7 @@ def move(game_board, user_input):
                     row.remove(row[i])
                     row.append(0)
             game_board[j] = row[::-1]
-    
+
     if user_input == 'w':
         #rotate counter clockwise
         rotated_board = [[], [], [], []]
@@ -149,7 +147,7 @@ def move(game_board, user_input):
                 if row[i] == row[i + 1]:
                     row[i + 1] += row[i + 1]
                     row.remove(row[i])
-                    row.append(0)       
+                    row.append(0)
             game_board[j] = row[::-1]
         #rotate clockwise? honestly idek anymore ive been working all day on this
         rotated_board2 = [[], [], [], []]
@@ -161,8 +159,6 @@ def move(game_board, user_input):
             for k in range(4):
                 game_board[j][k] = new_board[j][k]
     return game_board
-
-
 
 def game_over(game_board: [[int, ], ]) -> bool:
     """
@@ -197,12 +193,11 @@ def game_over(game_board: [[int, ], ]) -> bool:
     #adds 1 to counter if there are any pairs in the rotated test board
     for row in test_board:
         if any((row[i] == row[i + 1] and row[i] != 0) for i in range(len(row) - 1)):
-            counter += 1    
+            counter += 1
 
     if counter == 0:
         status = True
     return status  # TODO: Don't always return false
-
 
 if __name__ == "__main__":
     main([[0, 0, 0, 0],
